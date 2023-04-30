@@ -4,6 +4,7 @@ import UIKit
 class PlayerViewController: UIViewController {
     var playerView: VideoPlayerView!
     
+    
     @IBOutlet weak var playerContainer: UIView!
     
     override func viewDidLoad() {

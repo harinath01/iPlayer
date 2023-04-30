@@ -18,6 +18,10 @@
 		0382670C29EE5EED005405F8 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0382670B29EE5EED005405F8 /* PlayerViewController.swift */; };
 		0382671329EEA471005405F8 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0382671229EEA471005405F8 /* VideoPlayerView.swift */; };
 		03F3E4CC29FD51700028EE0B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F3E4CB29FD51700028EE0B /* Constants.swift */; };
+		03F3E4D229FE99760028EE0B /* VideoPlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F3E4D129FE99760028EE0B /* VideoPlayerControlsView.swift */; };
+		03F3E4D529FE9BC40028EE0B /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F3E4D429FE9BC40028EE0B /* UIView.swift */; };
+		03F3E4D929FE9F510028EE0B /* VideoPlayerControls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F3E4D829FE9F510028EE0B /* VideoPlayerControls.xib */; };
+		03F3E4DB29FEB9310028EE0B /* AVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F3E4DA29FEB9300028EE0B /* AVPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,11 @@
 		0382670B29EE5EED005405F8 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		0382671229EEA471005405F8 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		03F3E4CB29FD51700028EE0B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		03F3E4CD29FE76EF0028EE0B /* iPlayer2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iPlayer2.entitlements; sourceTree = "<group>"; };
+		03F3E4D129FE99760028EE0B /* VideoPlayerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerControlsView.swift; sourceTree = "<group>"; };
+		03F3E4D429FE9BC40028EE0B /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		03F3E4D829FE9F510028EE0B /* VideoPlayerControls.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = VideoPlayerControls.xib; path = iPlayer2/VideoPlayerControls.xib; sourceTree = SOURCE_ROOT; };
+		03F3E4DA29FEB9300028EE0B /* AVPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +112,9 @@
 		038266DA29ED73D4005405F8 /* iPlayer2 */ = {
 			isa = PBXGroup;
 			children = (
+				03F3E4D329FE9BB00028EE0B /* Extensions */,
+				03F3E4CE29FE81490028EE0B /* Xib */,
+				03F3E4CD29FE76EF0028EE0B /* iPlayer2.entitlements */,
 				03F3E4CB29FD51700028EE0B /* Constants.swift */,
 				0382670F29EEA2EA005405F8 /* Controllers */,
 				0382670D29EEA2AD005405F8 /* Views */,
@@ -136,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				0382671229EEA471005405F8 /* VideoPlayerView.swift */,
+				03F3E4D129FE99760028EE0B /* VideoPlayerControlsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -147,6 +160,23 @@
 				0382670B29EE5EED005405F8 /* PlayerViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		03F3E4CE29FE81490028EE0B /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				03F3E4D829FE9F510028EE0B /* VideoPlayerControls.xib */,
+			);
+			path = Xib;
+			sourceTree = "<group>";
+		};
+		03F3E4D329FE9BB00028EE0B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				03F3E4D429FE9BC40028EE0B /* UIView.swift */,
+				03F3E4DA29FEB9300028EE0B /* AVPlayer.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03F3E4D929FE9F510028EE0B /* VideoPlayerControls.xib in Resources */,
 				038266E829ED73D8005405F8 /* LaunchScreen.storyboard in Resources */,
 				038266E529ED73D8005405F8 /* Assets.xcassets in Resources */,
 				038266E329ED73D5005405F8 /* Main.storyboard in Resources */,
@@ -281,8 +312,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				03F3E4CC29FD51700028EE0B /* Constants.swift in Sources */,
+				03F3E4D229FE99760028EE0B /* VideoPlayerControlsView.swift in Sources */,
 				038266E029ED73D5005405F8 /* ViewController.swift in Sources */,
+				03F3E4D529FE9BC40028EE0B /* UIView.swift in Sources */,
 				0382670C29EE5EED005405F8 /* PlayerViewController.swift in Sources */,
+				03F3E4DB29FEB9310028EE0B /* AVPlayer.swift in Sources */,
 				038266DC29ED73D4005405F8 /* AppDelegate.swift in Sources */,
 				0382671329EEA471005405F8 /* VideoPlayerView.swift in Sources */,
 			);
@@ -459,6 +493,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iPlayer2/iPlayer2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BHAB7LC35Y;
@@ -488,6 +523,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iPlayer2/iPlayer2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BHAB7LC35Y;
