@@ -10,6 +10,8 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     var timeObserver: Any?
     var videoPlayerControlsView: VideoPlayerControlsView! = .fromNib("VideoPlayerControls")
     var isSeeking: Bool = false
+    var isFullScreen = false
+    var frameInSuperview: CGRect!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -80,15 +82,39 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     }
     
     func goTo(seconds: Float64) {
+        isSeeking = true
         let seekTime = CMTime(value: Int64(seconds), timescale: 1)
         player?.seek(
             to: seekTime,
             toleranceBefore: CMTime.zero,
             toleranceAfter: CMTime.zero
-        )
+        ) { [weak self] _ in
+            guard let `self` = self else { return }
+            self.isSeeking = false
+        }
     }
     
     func fullScreen() {
+        let value: Any
+        if !isFullScreen {
+            self.frameInSuperview = self.frame
+            value = UIInterfaceOrientation.landscapeRight.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
+            let rootView = self.superview
+            self.removeFromSuperview()
+            self.frame = rootView!.bounds
+            rootView!.addSubview(self)
+            self.playerLayer.frame = self.bounds
+            isFullScreen = true
+        } else {
+            value = UIInterfaceOrientation.portrait.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
+            self.removeFromSuperview()
+            self.frame = self.frameInSuperview
+            self.superview?.addSubview(self)
+            self.playerLayer.frame = self.bounds
+            isFullScreen = false
+        }
         
     }
 }
