@@ -12,10 +12,18 @@ import UIKit
 class VideoPlayerControlsView: UIView {
     
     var delegate: PlayerControlDelegate!
-    var videoDuration: Float64!
     
-
+    @IBOutlet weak var currentTimeLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var playPauseButton: UIButton!
+    
+    @IBOutlet weak var rewindButton: UIButton!
+    @IBOutlet weak var fullscreenToggleButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
+    
+    @IBOutlet weak var forwardButton: UIButton!
+    
+    
     @IBOutlet weak var slider: UISlider!
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,19 +45,28 @@ class VideoPlayerControlsView: UIView {
     }
     @IBAction func playbackSliderChanged(_ sender: UISlider) {
         delegate.pause()
+        let videoDuration = delegate.getDuration()
         let seekTo = Float64(slider!.value) * videoDuration
-        delegate?.goTo(seconds: Float(seekTo))
+        delegate?.goTo(seconds: seekTo)
         slider.value = Float(seekTo/videoDuration)
         delegate.play()
     }
+  
+    @IBAction func rewind(_ sender: Any) {
+        delegate.rewind()
+    }
     
-    func updateVideoPlayerSlider(currentTime: Float64, videoDuration: Float64){
-        self.videoDuration = videoDuration
-        if(!delegate.isPlaying()) {
-            return
-        }
-        
-        slider.value = Float(currentTime/videoDuration)
+    
+    @IBAction func forward(_ sender: UIButton) {
+        delegate.forward()
+    }
+    
+    
+    
+    func updatePlayerState(currentTime: Float64){
+        slider.value = Float(currentTime/delegate.getDuration())
+        currentTimeLabel.text = formatDuration(currentTime)
+        durationLabel.text = formatDuration(delegate.getDuration())
     }
 }
 
@@ -60,6 +77,7 @@ protocol PlayerControlDelegate {
     func play()
     func forward()
     func rewind()
-    func goTo(seconds:Float)
+    func goTo(seconds:Float64)
     func fullScreen()
+    func getDuration() -> Float64
 }

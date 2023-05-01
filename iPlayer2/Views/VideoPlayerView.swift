@@ -9,6 +9,7 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     var DRMLicenseURL: String?
     var timeObserver: Any?
     var videoPlayerControlsView: VideoPlayerControlsView! = .fromNib("VideoPlayerControls")
+    var isSeeking: Bool = false
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -37,10 +38,11 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     private func addObservers(){
         let interval = CMTime(value: 1, timescale: CMTimeScale(NSEC_PER_SEC))
         timeObserver = player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { progressTime in
-            self.videoPlayerControlsView.updateVideoPlayerSlider(
-                currentTime: CMTimeGetSeconds(progressTime),
-                videoDuration: self.player.durationInSeconds
-            )
+            if !self.isSeeking {
+                self.videoPlayerControlsView.updatePlayerState(
+                    currentTime: CMTimeGetSeconds(progressTime)
+                )
+            }
         })
     }
     
@@ -56,17 +58,34 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
         self.player.play()
     }
     
+    func getDuration() -> Float64 {
+        return self.player.durationInSeconds
+    }
+    
     func forward() {
-        
+        let duration = self.getDuration()
+        let seekTo = self.player.currentTimeInSeconds + 10
+        if seekTo > duration{
+            return
+        }
+        goTo(seconds: seekTo)
     }
     
     func rewind() {
-        
+        var seekTo = self.player.currentTimeInSeconds - 10
+        if seekTo < 0 {
+            seekTo = 0
+        }
+        goTo(seconds: seekTo)
     }
     
-    func goTo(seconds: Float) {
+    func goTo(seconds: Float64) {
         let seekTime = CMTime(value: Int64(seconds), timescale: 1)
-        player?.seek(to: seekTime)
+        player?.seek(
+            to: seekTime,
+            toleranceBefore: CMTime.zero,
+            toleranceAfter: CMTime.zero
+        )
     }
     
     func fullScreen() {
