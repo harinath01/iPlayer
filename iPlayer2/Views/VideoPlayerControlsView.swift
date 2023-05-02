@@ -12,6 +12,11 @@ import UIKit
 class VideoPlayerControlsView: UIView {
     
     var delegate: PlayerControlDelegate!
+    var playerStatus: PlayerStatus? = .readyToPlay {
+        didSet {
+            refreshPlayPauseButton(playerStatus!)
+        }
+    }
     var timer: Timer!
     
     @IBOutlet weak var currentTimeLabel: UILabel!
@@ -21,9 +26,7 @@ class VideoPlayerControlsView: UIView {
     @IBOutlet weak var fullscreenToggleButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
-    
     @IBOutlet weak var dividerLabel: UILabel!
-    
     @IBOutlet weak var slider: UISlider!
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,13 +45,35 @@ class VideoPlayerControlsView: UIView {
         timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(hideControls), userInfo: nil, repeats: false)
     }
     
+    func refreshPlayPauseButton(_ playerStatus: PlayerStatus){
+        switch self.playerStatus {
+        case .readyToPlay:
+            self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
+        case .playing:
+            self.playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+        case .paused:
+            self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
+        case .finished:
+            timer.invalidate()
+            hideControls()
+            self.playPauseButton.isHidden = false
+            self.playPauseButton.setImage(UIImage(named: "reload"), for: .normal)
+        case .none:
+            return
+        }
+    }
+    
     @IBAction func playPauseTapped(_ sender: UIButton) {
-        if !delegate.isPlaying(){
+        switch self.playerStatus {
+        case .finished:
+            delegate.reload()
+            playPauseButton.isHidden = true
+        case .paused, .readyToPlay:
             delegate.play()
-            playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
-        } else {
-            playPauseButton.setImage(UIImage(named: "play"), for: .normal)
+        case .playing:
             delegate.pause()
+        default:
+            return
         }
     }
     
@@ -76,10 +101,11 @@ class VideoPlayerControlsView: UIView {
         delegate.fullScreen()
     }
     
-    func updatePlayerState(currentTime: Float64){
+    func updatePlayerState(currentTime: Float64? = nil){
         if slider.isTracking {
           return
         }
+        let currentTime = currentTime ?? delegate.getCurrentTime()
         slider.value = Float(currentTime/delegate.getDuration())
         currentTimeLabel.text = formatDuration(currentTime)
         durationLabel.text = formatDuration(delegate.getDuration())
@@ -99,6 +125,10 @@ class VideoPlayerControlsView: UIView {
     }
     
     @objc func toggleControls() {
+        if self.playerStatus == .finished{
+            return
+        }
+        
         playPauseButton.isHidden = !playPauseButton.isHidden
         slider.isHidden = !slider.isHidden
         durationLabel.isHidden = !durationLabel.isHidden
@@ -126,9 +156,11 @@ protocol PlayerControlDelegate {
     func isPlaying() -> Bool
     func pause()
     func play()
+    func reload()
     func forward()
     func rewind()
     func goTo(seconds:Float64)
     func fullScreen()
     func getDuration() -> Float64
+    func getCurrentTime() -> Float64
 }

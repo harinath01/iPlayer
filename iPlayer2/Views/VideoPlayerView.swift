@@ -7,7 +7,8 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     var playerLayer: AVPlayerLayer!
     var url: URL!
     var DRMLicenseURL: String?
-    var timeObserver: Any?
+    var timeObserver: Any!
+    var videoEndObserver: Any!
     var videoPlayerControlsView: VideoPlayerControlsView! = .fromNib("VideoPlayerControls")
     var isSeeking: Bool = false
     var isFullScreen = false
@@ -42,6 +43,12 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     }
     
     private func addObservers(){
+        
+        // Player video end observer
+        videoEndObserver = NotificationCenter.default.addObserver(self, selector:#selector(self.playerDidFinishPlaying),name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
+        
+        
+        // Player current time change observer
         let interval = CMTime(value: 1, timescale: CMTimeScale(NSEC_PER_SEC))
         timeObserver = player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { progressTime in
             if !self.isSeeking {
@@ -52,20 +59,35 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
         })
     }
     
+    @objc func playerDidFinishPlaying() {
+        videoPlayerControlsView.playerStatus = .finished
+    }
+    
     func isPlaying() -> Bool {
         return self.player.isPlaying
     }
     
-    func pause() {
-        self.player.pause()
-    }
-    
     func play() {
         self.player.play()
+        self.videoPlayerControlsView.playerStatus = .playing
+    }
+    
+    func pause() {
+        self.player.pause()
+        self.videoPlayerControlsView.playerStatus = .paused
+    }
+    
+    func reload(){
+        goTo(seconds: 0.0)
+        play()
     }
     
     func getDuration() -> Float64 {
         return self.player.durationInSeconds
+    }
+    
+    func getCurrentTime() -> Float64 {
+        return self.player.currentTimeInSeconds
     }
     
     func forward() {
@@ -95,6 +117,7 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
         ) { [weak self] _ in
             guard let `self` = self else { return }
             self.isSeeking = false
+            self.videoPlayerControlsView.updatePlayerState()
         }
     }
     

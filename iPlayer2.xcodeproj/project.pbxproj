@@ -23,6 +23,7 @@
 		03F3E4D929FE9F510028EE0B /* VideoPlayerControls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F3E4D829FE9F510028EE0B /* VideoPlayerControls.xib */; };
 		03F3E4DB29FEB9310028EE0B /* AVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F3E4DA29FEB9300028EE0B /* AVPlayer.swift */; };
 		03F3E4DE29FFD1D10028EE0B /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F3E4DD29FFD1D10028EE0B /* Formatters.swift */; };
+		03F3E4E02A00DBFE0028EE0B /* PlayerStatuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F3E4DF2A00DBFE0028EE0B /* PlayerStatuses.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		03F3E4D829FE9F510028EE0B /* VideoPlayerControls.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = VideoPlayerControls.xib; path = iPlayer2/VideoPlayerControls.xib; sourceTree = SOURCE_ROOT; };
 		03F3E4DA29FEB9300028EE0B /* AVPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayer.swift; sourceTree = "<group>"; };
 		03F3E4DD29FFD1D10028EE0B /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
+		03F3E4DF2A00DBFE0028EE0B /* PlayerStatuses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatuses.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				03F3E4DD29FFD1D10028EE0B /* Formatters.swift */,
+				03F3E4DF2A00DBFE0028EE0B /* PlayerStatuses.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				03F3E4D529FE9BC40028EE0B /* UIView.swift in Sources */,
 				0382670C29EE5EED005405F8 /* PlayerViewController.swift in Sources */,
 				03F3E4DE29FFD1D10028EE0B /* Formatters.swift in Sources */,
+				03F3E4E02A00DBFE0028EE0B /* PlayerStatuses.swift in Sources */,
 				03F3E4DB29FEB9310028EE0B /* AVPlayer.swift in Sources */,
 				038266DC29ED73D4005405F8 /* AppDelegate.swift in Sources */,
 				0382671329EEA471005405F8 /* VideoPlayerView.swift in Sources */,
