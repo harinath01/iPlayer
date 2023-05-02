@@ -39,7 +39,7 @@
                     </connections>
                 </slider>
                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfG-OK-yyY">
-                    <rect key="frame" x="433.5" y="167.5" width="40" height="40"/>
+                    <rect key="frame" x="448.5" y="167.5" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="2zu-Jm-4jq"/>
                         <constraint firstAttribute="height" constant="40" id="5ka-6u-F7h"/>
@@ -51,7 +51,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eZI-Dr-6KE">
-                    <rect key="frame" x="193.5" y="167.5" width="40" height="40"/>
+                    <rect key="frame" x="178.5" y="167.5" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="8cH-bj-zT3"/>
                         <constraint firstAttribute="width" constant="40" id="YyL-h2-aNl"/>
@@ -68,9 +68,9 @@
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="24" id="UO4-Y8-lJ5"/>
                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="24" id="a5I-Yz-pby"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="" image="fullscreen(3)"/>
+                    <state key="normal" title="" image="maximize"/>
                     <connections>
                         <action selector="toggleFullscreen:" destination="iN0-l3-epB" eventType="touchUpInside" id="19N-ph-x1x"/>
                     </connections>
@@ -111,7 +111,7 @@
                 <constraint firstItem="x7w-Qc-9V9" firstAttribute="top" secondItem="8sc-wo-ouX" secondAttribute="bottom" constant="3" id="5lJ-Ee-jnT"/>
                 <constraint firstItem="x7w-Qc-9V9" firstAttribute="top" secondItem="AON-7H-sTv" secondAttribute="bottom" constant="2" id="7Sf-Qa-3gY"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="x7w-Qc-9V9" secondAttribute="trailing" constant="12" id="BBV-pa-Jm1"/>
-                <constraint firstItem="Jy8-he-bsV" firstAttribute="leading" secondItem="eZI-Dr-6KE" secondAttribute="trailing" constant="75" id="HTX-5o-yJu"/>
+                <constraint firstItem="Jy8-he-bsV" firstAttribute="leading" secondItem="eZI-Dr-6KE" secondAttribute="trailing" constant="90" id="HTX-5o-yJu"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="x7w-Qc-9V9" secondAttribute="bottom" constant="25" id="Ohq-Qj-Tge"/>
                 <constraint firstItem="Jy8-he-bsV" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="SmC-Fh-WRZ"/>
                 <constraint firstItem="zfG-OK-yyY" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="YQT-x8-0LV"/>
@@ -124,7 +124,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="AON-7H-sTv" secondAttribute="trailing" constant="12" id="vve-bS-fpb"/>
                 <constraint firstItem="x7w-Qc-9V9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="wiP-mM-VvP"/>
                 <constraint firstItem="x7w-Qc-9V9" firstAttribute="top" secondItem="44g-eQ-1Yv" secondAttribute="bottom" constant="3" id="y0R-Qc-IXl"/>
-                <constraint firstItem="zfG-OK-yyY" firstAttribute="leading" secondItem="Jy8-he-bsV" secondAttribute="trailing" constant="75" id="zU1-VC-iBl"/>
+                <constraint firstItem="zfG-OK-yyY" firstAttribute="leading" secondItem="Jy8-he-bsV" secondAttribute="trailing" constant="90" id="zU1-VC-iBl"/>
             </constraints>
             <connections>
                 <outlet property="currentTimeLabel" destination="8sc-wo-ouX" id="Puv-YR-ejy"/>
@@ -142,7 +142,7 @@
     </objects>
     <resources>
         <image name="forward" width="90" height="90"/>
-        <image name="fullscreen(3)" width="512" height="512"/>
+        <image name="maximize" width="512" height="512"/>
         <image name="play" width="512" height="512"/>
         <image name="rewind" width="90" height="90"/>
         <image name="settings" width="256" height="256"/>

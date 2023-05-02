@@ -108,12 +108,16 @@ class VideoPlayerControlsView: UIView {
         fullscreenToggleButton.isHidden = !fullscreenToggleButton.isHidden
         currentTimeLabel.isHidden = !currentTimeLabel.isHidden
         dividerLabel.isHidden = !dividerLabel.isHidden
+        toggleBackgroundColor()
+        resetTimer()
+    }
+    
+    func toggleBackgroundColor(){
         if self.backgroundColor == nil {
             self.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         } else {
             self.backgroundColor = nil
         }
-        resetTimer()
     }
 }
 

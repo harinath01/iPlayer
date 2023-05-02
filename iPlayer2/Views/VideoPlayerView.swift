@@ -22,10 +22,7 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
         self.DRMLicenseURL = DRMLicenseURL
         super.init(frame: frame)
         setupPlayer()
-        videoPlayerControlsView.frame = bounds
-        videoPlayerControlsView.delegate = self
-        videoPlayerControlsView.setUp()
-        self.addSubview(videoPlayerControlsView)
+        setupPlayerControls()
         addObservers()
     }
     
@@ -35,6 +32,13 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
         playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.bounds
         self.layer.addSublayer(playerLayer)
+    }
+    
+    private func setupPlayerControls(){
+        videoPlayerControlsView.frame = bounds
+        videoPlayerControlsView.delegate = self
+        videoPlayerControlsView.setUp()
+        self.addSubview(videoPlayerControlsView)
     }
     
     private func addObservers(){
