@@ -97,3 +97,4 @@ iOSInjectionProject/
 *.xcodeproj/*.perspectivev3
 DerivedData/
 *.xccheckout
+.DS_Store
