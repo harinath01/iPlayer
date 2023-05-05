@@ -11,8 +11,8 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     var videoEndObserver: Any!
     var videoPlayerControlsView: VideoPlayerControlsView! = .fromNib("VideoPlayerControls")
     var isSeeking: Bool = false
-    var isFullScreen = false
-    var frameInSuperview: CGRect!
+    var frameInParentView: CGRect!
+    var parentView: UIView?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -121,27 +121,27 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
         }
     }
     
-    func fullScreen() {
-        let value: Any
-        if !isFullScreen {
-            self.frameInSuperview = self.frame
-            value = UIInterfaceOrientation.landscapeRight.rawValue
-            UIDevice.current.setValue(value, forKey: "orientation")
-            let rootView = self.superview
-            self.removeFromSuperview()
-            self.frame = rootView!.bounds
-            rootView!.addSubview(self)
-            self.playerLayer.frame = self.bounds
-            isFullScreen = true
-        } else {
-            value = UIInterfaceOrientation.portrait.rawValue
-            UIDevice.current.setValue(value, forKey: "orientation")
-            self.removeFromSuperview()
-            self.frame = self.frameInSuperview
-            self.superview?.addSubview(self)
-            self.playerLayer.frame = self.bounds
-            isFullScreen = false
-        }
-        
+    func enterFullScreen(){
+        UIDevice.current.setValue(
+            UIInterfaceOrientation.landscapeRight.rawValue,
+            forKey: "orientation"
+        )
+        parentView = superview
+        frameInParentView = frame
+        frame = UIScreen.main.bounds
+        removeFromSuperview()
+        UIApplication.shared.keyWindow!.addSubview(self)
+        playerLayer.frame = bounds
+    }
+    
+    func exitFullScreen(){
+        UIDevice.current.setValue(
+            UIInterfaceOrientation.portrait.rawValue,
+            forKey: "orientation"
+        )
+        frame = frameInParentView
+        removeFromSuperview()
+        parentView!.addSubview(self)
+        playerLayer.frame = bounds
     }
 }
