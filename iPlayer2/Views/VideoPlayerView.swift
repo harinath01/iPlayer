@@ -43,10 +43,8 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     }
     
     private func addObservers(){
-        
         // Player video end observer
         videoEndObserver = NotificationCenter.default.addObserver(self, selector:#selector(self.playerDidFinishPlaying),name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
-        
         
         // Player current time change observer
         let interval = CMTime(value: 1, timescale: CMTimeScale(NSEC_PER_SEC))
@@ -57,6 +55,30 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
                 )
             }
         })
+        
+        // Player buffering observer
+        player?.currentItem?.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: nil)
+        player?.currentItem?.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: nil)
+        player?.currentItem?.addObserver(self, forKeyPath: "playbackBufferFull", options: .new, context: nil)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        guard let playerItem = object as? AVPlayerItem else {
+            return
+        }
+        
+        switch keyPath {
+        case #keyPath(AVPlayerItem.isPlaybackBufferEmpty):
+            if playerItem.isPlaybackBufferEmpty {
+                videoPlayerControlsView.startLoading()
+            }
+        case #keyPath(AVPlayerItem.isPlaybackLikelyToKeepUp), #keyPath(AVPlayerItem.isPlaybackBufferFull):
+            if playerItem.isPlaybackLikelyToKeepUp {
+                videoPlayerControlsView.stopLoading()
+            }
+        default:
+            break
+        }
     }
     
     @objc func playerDidFinishPlaying() {
@@ -65,6 +87,10 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     
     func isPlaying() -> Bool {
         return self.player.isPlaying
+    }
+    
+    func canPlay() -> Bool{
+        return self.player.currentItem?.isPlaybackLikelyToKeepUp == true
     }
     
     func play() {

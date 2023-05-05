@@ -12,13 +12,14 @@ import UIKit
 class VideoPlayerControlsView: UIView {
     
     var delegate: PlayerControlDelegate!
-    var playerStatus: PlayerStatus? = .readyToPlay {
+    var playerStatus: PlayerStatus = .readyToPlay {
         didSet {
-            refreshPlayPauseButton(playerStatus!)
+            refreshPlayPauseButton(playerStatus)
         }
     }
     var timer: Timer!
     var isFullScreen = false
+    var loadingIndicator: UIActivityIndicatorView?
     
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
@@ -38,6 +39,7 @@ class VideoPlayerControlsView: UIView {
         self.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         resetTimer()
         addTapGestureRecognize()
+        startLoading()
     }
     
     func resetTimer() {
@@ -63,8 +65,6 @@ class VideoPlayerControlsView: UIView {
             hideControls()
             self.playPauseButton.setImage(UIImage(named: "reload"), for: .normal)
             self.playPauseButton.isHidden = false
-        case .none:
-            return
         }
     }
     
@@ -75,10 +75,14 @@ class VideoPlayerControlsView: UIView {
             playPauseButton.isHidden = true
         case .paused, .readyToPlay:
             delegate.play()
+            if(!delegate.canPlay()){
+                startLoading()
+            }
         case .playing:
             delegate.pause()
-        default:
-            return
+            if(loadingIndicator?.isAnimating == true){
+                stopLoading()
+            }
         }
     }
     
@@ -126,24 +130,30 @@ class VideoPlayerControlsView: UIView {
     
     @objc func hideControls() {
         let controls = [
-            playPauseButton, slider, currentTimeLabel, durationLabel,
+            slider, currentTimeLabel, durationLabel,
             forwardButton, rewindButton, settingsButton, fullscreenToggleButton,
             dividerLabel
         ]
         
         controls.forEach { $0!.isHidden = true }
+        if loadingIndicator?.isAnimating == false{
+            playPauseButton.isHidden = true
+        }
         backgroundColor = nil
     }
 
     @objc func toggleControls() {
         guard playerStatus != .finished else { return }
-        var controls = [
-            playPauseButton, slider, durationLabel, forwardButton,
+        let controls = [
+            slider, durationLabel, forwardButton,
             rewindButton, settingsButton, fullscreenToggleButton,
             currentTimeLabel, dividerLabel
         ]
         
         controls.forEach { $0!.isHidden.toggle() }
+        if loadingIndicator?.isAnimating == false {
+            playPauseButton.isHidden.toggle()
+        }
         toggleBackgroundColor()
         resetTimer()
     }
@@ -154,6 +164,34 @@ class VideoPlayerControlsView: UIView {
         } else {
             self.backgroundColor = nil
         }
+    }
+    
+    func startLoading(){
+        loadingIndicator = getLoadingIndicator() 
+        playPauseButton.setImage(nil, for: .normal)
+        playPauseButton.setTitle("", for: .normal)
+        playPauseButton.addSubview(loadingIndicator!)
+        loadingIndicator!.startAnimating()
+    }
+    
+    func stopLoading(){
+        loadingIndicator?.stopAnimating()
+        refreshPlayPauseButton(playerStatus)
+    }
+    
+    func getLoadingIndicator() -> UIActivityIndicatorView{
+        if loadingIndicator != nil{
+            return loadingIndicator!
+        }
+        
+        let newLoadingIndicator = UIActivityIndicatorView(style: .whiteLarge)
+        newLoadingIndicator.hidesWhenStopped = true
+        newLoadingIndicator.isUserInteractionEnabled = false
+        newLoadingIndicator.center = CGPoint(
+            x: playPauseButton.bounds.size.width/2,
+            y: playPauseButton.bounds.size.height/2
+        )
+        return newLoadingIndicator
     }
 }
 
@@ -170,4 +208,5 @@ protocol PlayerControlDelegate {
     func exitFullScreen()
     func getDuration() -> Float64
     func getCurrentTime() -> Float64
+    func canPlay() -> Bool
 }
