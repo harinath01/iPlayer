@@ -79,7 +79,9 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
         case .playing:
             videoPlayerControlsView.playerStatus = .playing
         case .paused:
-            videoPlayerControlsView.playerStatus = .paused
+            if videoPlayerControlsView.playerStatus != .finished{
+                videoPlayerControlsView.playerStatus = .paused
+            }
         case .waitingToPlayAtSpecifiedRate:
             break
         @unknown default:

@@ -69,10 +69,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AON-7H-sTv">
-                    <rect key="frame" x="631" y="317" width="24" height="24"/>
+                    <rect key="frame" x="637" y="323" width="18" height="18"/>
                     <constraints>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="24" id="UO4-Y8-lJ5"/>
-                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="24" id="a5I-Yz-pby"/>
+                        <constraint firstAttribute="width" constant="18" id="AFi-qM-t29"/>
+                        <constraint firstAttribute="height" constant="18" id="rZk-dr-Ypk"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -94,10 +94,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aC-lw-Q9N">
-                    <rect key="frame" x="631" y="20" width="24" height="24"/>
+                    <rect key="frame" x="633" y="20" width="22" height="22"/>
                     <constraints>
-                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="24" id="Yf9-EC-PtA"/>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="24" id="nKL-uC-jwX"/>
+                        <constraint firstAttribute="width" constant="22" id="Yf9-EC-PtA"/>
+                        <constraint firstAttribute="height" constant="22" id="nKL-uC-jwX"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
