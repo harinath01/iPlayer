@@ -60,13 +60,34 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
         player?.currentItem?.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: nil)
         player?.currentItem?.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: nil)
         player?.currentItem?.addObserver(self, forKeyPath: "playbackBufferFull", options: .new, context: nil)
+        player.addObserver(self, forKeyPath: "timeControlStatus", options: .new, context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        guard let playerItem = object as? AVPlayerItem else {
-            return
+
+        if let player = object as? AVPlayer {
+            if keyPath == "timeControlStatus" {
+                handleTimeControlStatusChange(for: player)
+            }
+        } else if let playerItem = object as? AVPlayerItem {
+            handlePlayerItemChange(for: playerItem, keyPath: keyPath)
         }
-        
+    }
+
+    private func handleTimeControlStatusChange(for player: AVPlayer) {
+        switch player.timeControlStatus {
+        case .playing:
+            videoPlayerControlsView.playerStatus = .playing
+        case .paused:
+            videoPlayerControlsView.playerStatus = .paused
+        case .waitingToPlayAtSpecifiedRate:
+            break
+        @unknown default:
+            break
+        }
+    }
+
+    private func handlePlayerItemChange(for playerItem: AVPlayerItem, keyPath: String?) {
         switch keyPath {
         case #keyPath(AVPlayerItem.isPlaybackBufferEmpty):
             if playerItem.isPlaybackBufferEmpty {
@@ -95,12 +116,10 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     
     func play() {
         self.player.play()
-        self.videoPlayerControlsView.playerStatus = .playing
     }
     
     func pause() {
         self.player.pause()
-        self.videoPlayerControlsView.playerStatus = .paused
     }
     
     func reload(){
