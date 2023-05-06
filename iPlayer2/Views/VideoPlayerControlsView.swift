@@ -179,6 +179,10 @@ class VideoPlayerControlsView: UIView {
         refreshPlayPauseButton(playerStatus)
     }
     
+    @IBAction func showOptionsMenu(_ sender: Any) {
+        delegate.showOptionsMenu()
+    }
+
     func getLoadingIndicator() -> UIActivityIndicatorView{
         if loadingIndicator != nil{
             return loadingIndicator!
@@ -209,4 +213,5 @@ protocol PlayerControlDelegate {
     func getDuration() -> Float64
     func getCurrentTime() -> Float64
     func canPlay() -> Bool
+    func showOptionsMenu()
 }

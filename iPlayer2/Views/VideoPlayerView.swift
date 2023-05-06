@@ -189,4 +189,43 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
         parentView!.addSubview(self)
         playerLayer.frame = bounds
     }
+    
+    func changePlaybackSpeed(speed: PlaybackSpeed){
+        player.rate = speed.value
+    }
+    
+    func showOptionsMenu(){
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Video Quality", style: .default, handler: { action in
+            print("Video Quality Speed")
+        }))
+        alert.addAction(UIAlertAction(title: "Playback Speed", style: .default, handler: { action in
+            self.showPlaybackSpeedMenu()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        window?.rootViewController?.presentedViewController?.present(alert, animated: true, completion: nil)
+    }
+    
+    func showPlaybackSpeedMenu(){
+        let alert = UIAlertController(title: "Playback Speed", message: nil, preferredStyle: .actionSheet)
+
+        for playbackSpeed in PlaybackSpeed.allCases {
+            let action = UIAlertAction(title: playbackSpeed.label, style: .default) { [weak self] _ in
+                self?.changePlaybackSpeed(speed: playbackSpeed)
+            }
+
+            if playbackSpeed == .normal && player.rate == 0.0 || (playbackSpeed.value == player.rate) {
+                action.setValue(UIImage(named: "checkmark"), forKey: "image")
+            }
+
+            alert.addAction(action)
+        }
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        window?.rootViewController?.presentedViewController?.present(alert, animated: true, completion: nil)
+    }
 }

@@ -26,6 +26,7 @@
 		03F3E4E02A00DBFE0028EE0B /* PlayerStatuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F3E4DF2A00DBFE0028EE0B /* PlayerStatuses.swift */; };
 		03F3E4E22A010CE70028EE0B /* VideoPlayerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F3E4E12A010CE70028EE0B /* VideoPlayerSlider.swift */; };
 		03F3E4E42A01218A0028EE0B /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F3E4E32A01218A0028EE0B /* UIImage.swift */; };
+		03F3E4E82A061FAF0028EE0B /* PlaybackSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F3E4E72A061FAF0028EE0B /* PlaybackSpeed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		03F3E4DF2A00DBFE0028EE0B /* PlayerStatuses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatuses.swift; sourceTree = "<group>"; };
 		03F3E4E12A010CE70028EE0B /* VideoPlayerSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerSlider.swift; sourceTree = "<group>"; };
 		03F3E4E32A01218A0028EE0B /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		03F3E4E72A061FAF0028EE0B /* PlaybackSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackSpeed.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +197,7 @@
 			children = (
 				03F3E4DD29FFD1D10028EE0B /* Formatters.swift */,
 				03F3E4DF2A00DBFE0028EE0B /* PlayerStatuses.swift */,
+				03F3E4E72A061FAF0028EE0B /* PlaybackSpeed.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				03F3E4D529FE9BC40028EE0B /* UIView.swift in Sources */,
 				0382670C29EE5EED005405F8 /* PlayerViewController.swift in Sources */,
 				03F3E4E22A010CE70028EE0B /* VideoPlayerSlider.swift in Sources */,
+				03F3E4E82A061FAF0028EE0B /* PlaybackSpeed.swift in Sources */,
 				03F3E4DE29FFD1D10028EE0B /* Formatters.swift in Sources */,
 				03F3E4E02A00DBFE0028EE0B /* PlayerStatuses.swift in Sources */,
 				03F3E4DB29FEB9310028EE0B /* AVPlayer.swift in Sources */,
