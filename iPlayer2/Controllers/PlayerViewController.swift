@@ -3,6 +3,7 @@ import UIKit
 
 class PlayerViewController: UIViewController {
     var playerView: VideoPlayerView!
+    var url: URL!
     
     
     @IBOutlet weak var playerContainer: UIView!
@@ -17,8 +18,7 @@ class PlayerViewController: UIViewController {
     func initPlayerView(){
         playerView = VideoPlayerView(
             frame: playerContainer.frame,
-            url: URL(string: Constants.Videos.NON_DRM_PROTECTED_VIDEO),
-            DRMLicenseURL: nil
+            url: self.url
         )
     }
     

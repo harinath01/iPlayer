@@ -19,6 +19,9 @@
 		0382671329EEA471005405F8 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0382671229EEA471005405F8 /* VideoPlayerView.swift */; };
 		038CC3012A06577B0093BF72 /* M3U8Kit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 03F3E4EA2A0656720028EE0B /* M3U8Kit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		038CC3032A065AAE0093BF72 /* VideoQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CC3022A065AAE0093BF72 /* VideoQuality.swift */; };
+		038CC3052A0690840093BF72 /* VideoResourceLoaderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CC3042A0690840093BF72 /* VideoResourceLoaderDelegate.swift */; };
+		038CC3072A0691610093BF72 /* DRMKeySessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CC3062A0691610093BF72 /* DRMKeySessionDelegate.swift */; };
+		038CC3092A06A40A0093BF72 /* DRMError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CC3082A06A40A0093BF72 /* DRMError.swift */; };
 		03F3E4CC29FD51700028EE0B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F3E4CB29FD51700028EE0B /* Constants.swift */; };
 		03F3E4D229FE99760028EE0B /* VideoPlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F3E4D129FE99760028EE0B /* VideoPlayerControlsView.swift */; };
 		03F3E4D529FE9BC40028EE0B /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F3E4D429FE9BC40028EE0B /* UIView.swift */; };
@@ -78,6 +81,9 @@
 		0382670B29EE5EED005405F8 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		0382671229EEA471005405F8 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		038CC3022A065AAE0093BF72 /* VideoQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoQuality.swift; sourceTree = "<group>"; };
+		038CC3042A0690840093BF72 /* VideoResourceLoaderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoResourceLoaderDelegate.swift; sourceTree = "<group>"; };
+		038CC3062A0691610093BF72 /* DRMKeySessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRMKeySessionDelegate.swift; sourceTree = "<group>"; };
+		038CC3082A06A40A0093BF72 /* DRMError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRMError.swift; sourceTree = "<group>"; };
 		03F3E4CB29FD51700028EE0B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		03F3E4CD29FE76EF0028EE0B /* iPlayer2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iPlayer2.entitlements; sourceTree = "<group>"; };
 		03F3E4D129FE99760028EE0B /* VideoPlayerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerControlsView.swift; sourceTree = "<group>"; };
@@ -219,6 +225,9 @@
 				03F3E4DF2A00DBFE0028EE0B /* PlayerStatuses.swift */,
 				03F3E4E72A061FAF0028EE0B /* PlaybackSpeed.swift */,
 				038CC3022A065AAE0093BF72 /* VideoQuality.swift */,
+				038CC3042A0690840093BF72 /* VideoResourceLoaderDelegate.swift */,
+				038CC3062A0691610093BF72 /* DRMKeySessionDelegate.swift */,
+				038CC3082A06A40A0093BF72 /* DRMError.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -387,8 +396,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				03F3E4CC29FD51700028EE0B /* Constants.swift in Sources */,
+				038CC3072A0691610093BF72 /* DRMKeySessionDelegate.swift in Sources */,
 				03F3E4D229FE99760028EE0B /* VideoPlayerControlsView.swift in Sources */,
 				038266E029ED73D5005405F8 /* ViewController.swift in Sources */,
+				038CC3092A06A40A0093BF72 /* DRMError.swift in Sources */,
 				03F3E4D529FE9BC40028EE0B /* UIView.swift in Sources */,
 				0382670C29EE5EED005405F8 /* PlayerViewController.swift in Sources */,
 				03F3E4E22A010CE70028EE0B /* VideoPlayerSlider.swift in Sources */,
@@ -399,6 +410,7 @@
 				03F3E4DB29FEB9310028EE0B /* AVPlayer.swift in Sources */,
 				03F3E4E42A01218A0028EE0B /* UIImage.swift in Sources */,
 				038266DC29ED73D4005405F8 /* AppDelegate.swift in Sources */,
+				038CC3052A0690840093BF72 /* VideoResourceLoaderDelegate.swift in Sources */,
 				0382671329EEA471005405F8 /* VideoPlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

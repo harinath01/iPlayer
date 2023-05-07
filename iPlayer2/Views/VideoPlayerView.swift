@@ -7,7 +7,6 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     var player: AVPlayer!
     var playerLayer: AVPlayerLayer!
     var url: URL!
-    var DRMLicenseURL: String?
     var timeObserver: Any!
     var videoEndObserver: Any!
     var videoPlayerControlsView: VideoPlayerControlsView! = .fromNib("VideoPlayerControls")
@@ -16,13 +15,16 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     var parentView: UIView?
     var availableResolutions:[VideoQuality] = [VideoQuality(resolution:"Auto", bitrate: 0)]
     
+    // Define these as propery of class, to prevent the delegates from being deallocated,
+    var contentKeySessionDelegate: DRMKeySessionDelegate!
+    var videoPlayerResourceLoaderDelegate: VideoPlayerResourceLoaderDelegate!
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    init(frame: CGRect, url: URL!, DRMLicenseURL: String?) {
+    init(frame: CGRect, url: URL!) {
         self.url = url
-        self.DRMLicenseURL = DRMLicenseURL
         super.init(frame: frame)
         setupPlayer()
         setupPlayerControls()
@@ -31,7 +33,8 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     
     private func setupPlayer(){
         backgroundColor = .black
-        player = AVPlayer(url: self.url)
+        let playerItem = getPlayerItem()
+        player = AVPlayer(playerItem: playerItem)
         playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.bounds
         self.layer.addSublayer(playerLayer)
@@ -64,6 +67,22 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
         player?.currentItem?.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: nil)
         player?.currentItem?.addObserver(self, forKeyPath: "playbackBufferFull", options: .new, context: nil)
         player.addObserver(self, forKeyPath: "timeControlStatus", options: .new, context: nil)
+    }
+    
+    func getPlayerItem() -> AVPlayerItem{
+        var asset = AVURLAsset(url: url)
+        let contentKeySession = getContentKeySessionForAsset(asset: asset)
+        videoPlayerResourceLoaderDelegate = VideoPlayerResourceLoaderDelegate(contentKeySession)
+        asset.resourceLoader.setDelegate(videoPlayerResourceLoaderDelegate, queue: DispatchQueue.main)
+        return AVPlayerItem(asset: asset)
+    }
+    
+    func getContentKeySessionForAsset(asset: AVURLAsset) -> AVContentKeySession{
+        let contentKeySession = AVContentKeySession(keySystem: AVContentKeySystem.fairPlayStreaming)
+        contentKeySessionDelegate = DRMKeySessionDelegate(licenseURL: "https://app.tpstreams.com/api/v1/edee9b/assets/4A7M7nUYnX9/drm_license/?access_token=e258e9b9-e4c4-473f-8f01-40198e7d37c2&drm_type=fairplay")
+        contentKeySession.setDelegate(contentKeySessionDelegate, queue: DispatchQueue.main)
+        contentKeySession.addContentKeyRecipient(asset)
+        return contentKeySession
     }
     
     func parseAvailableResolutionsFromManifest(){
