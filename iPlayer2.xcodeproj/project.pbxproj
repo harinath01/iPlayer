@@ -12,7 +12,6 @@
 		038266E329ED73D5005405F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 038266E129ED73D5005405F8 /* Main.storyboard */; };
 		038266E529ED73D8005405F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 038266E429ED73D8005405F8 /* Assets.xcassets */; };
 		038266E829ED73D8005405F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 038266E629ED73D8005405F8 /* LaunchScreen.storyboard */; };
-		038266F329ED73D8005405F8 /* iPlayer2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038266F229ED73D8005405F8 /* iPlayer2Tests.swift */; };
 		038266FD29ED73D8005405F8 /* iPlayer2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038266FC29ED73D8005405F8 /* iPlayer2UITests.swift */; };
 		038266FF29ED73D8005405F8 /* iPlayer2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038266FE29ED73D8005405F8 /* iPlayer2UITestsLaunchTests.swift */; };
 		0382670C29EE5EED005405F8 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0382670B29EE5EED005405F8 /* PlayerViewController.swift */; };
@@ -21,6 +20,7 @@
 		038CC3032A065AAE0093BF72 /* VideoQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CC3022A065AAE0093BF72 /* VideoQuality.swift */; };
 		038CC3072A0691610093BF72 /* DRMKeySessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CC3062A0691610093BF72 /* DRMKeySessionDelegate.swift */; };
 		038CC3092A06A40A0093BF72 /* DRMError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CC3082A06A40A0093BF72 /* DRMError.swift */; };
+		03F2C9372A090F5A0071F914 /* VideoPlayerViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F2C9362A090F5A0071F914 /* VideoPlayerViewTests.swift */; };
 		03F3E4CC29FD51700028EE0B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F3E4CB29FD51700028EE0B /* Constants.swift */; };
 		03F3E4D229FE99760028EE0B /* VideoPlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F3E4D129FE99760028EE0B /* VideoPlayerControlsView.swift */; };
 		03F3E4D529FE9BC40028EE0B /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F3E4D429FE9BC40028EE0B /* UIView.swift */; };
@@ -73,7 +73,6 @@
 		038266E729ED73D8005405F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		038266E929ED73D8005405F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		038266EE29ED73D8005405F8 /* iPlayer2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iPlayer2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		038266F229ED73D8005405F8 /* iPlayer2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPlayer2Tests.swift; sourceTree = "<group>"; };
 		038266F829ED73D8005405F8 /* iPlayer2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iPlayer2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		038266FC29ED73D8005405F8 /* iPlayer2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPlayer2UITests.swift; sourceTree = "<group>"; };
 		038266FE29ED73D8005405F8 /* iPlayer2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPlayer2UITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -82,6 +81,7 @@
 		038CC3022A065AAE0093BF72 /* VideoQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoQuality.swift; sourceTree = "<group>"; };
 		038CC3062A0691610093BF72 /* DRMKeySessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRMKeySessionDelegate.swift; sourceTree = "<group>"; };
 		038CC3082A06A40A0093BF72 /* DRMError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRMError.swift; sourceTree = "<group>"; };
+		03F2C9362A090F5A0071F914 /* VideoPlayerViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewTests.swift; sourceTree = "<group>"; };
 		03F3E4CB29FD51700028EE0B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		03F3E4CD29FE76EF0028EE0B /* iPlayer2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iPlayer2.entitlements; sourceTree = "<group>"; };
 		03F3E4D129FE99760028EE0B /* VideoPlayerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerControlsView.swift; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 		038266F129ED73D8005405F8 /* iPlayer2Tests */ = {
 			isa = PBXGroup;
 			children = (
-				038266F229ED73D8005405F8 /* iPlayer2Tests.swift */,
+				03F2C9362A090F5A0071F914 /* VideoPlayerViewTests.swift */,
 			);
 			path = iPlayer2Tests;
 			sourceTree = "<group>";
@@ -415,7 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				038266F329ED73D8005405F8 /* iPlayer2Tests.swift in Sources */,
+				03F2C9372A090F5A0071F914 /* VideoPlayerViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,7 +654,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BHAB7LC35Y;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hari.iPlayer2Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -674,7 +674,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BHAB7LC35Y;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hari.iPlayer2Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
