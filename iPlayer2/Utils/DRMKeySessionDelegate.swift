@@ -25,7 +25,6 @@ class DRMKeySessionDelegate: NSObject, AVContentKeySessionDelegate {
     
     func contentKeySession(_ session: AVContentKeySession, shouldRetry keyRequest: AVContentKeyRequest,
                            reason retryReason: AVContentKeyRequest.RetryReason) -> Bool {
-        print(retryReason)
         switch retryReason {
         case .timedOut, .receivedResponseWithExpiredLease, .receivedObsoleteContentKey:
             return true
@@ -37,12 +36,11 @@ class DRMKeySessionDelegate: NSObject, AVContentKeySessionDelegate {
     func handleStreamingContentKeyRequest(keyRequest: AVContentKeyRequest){
         guard let contentKeyIdentifier = keyRequest.identifier as? NSURL, let contentId = contentKeyIdentifier.host
             else {
-                print("Failed to retrieve the assetID from the keyRequest!")
+                debugPrint("Failed to retrieve the assetID from the keyRequest!")
                 return
         }
         self.requestContentKey(keyRequest, contentId) { keyResponse, error in
             if let keyResponse = keyResponse {
-                print("success", keyResponse)
                 keyRequest.processContentKeyResponse(keyResponse)
             } else {
                 keyRequest.processContentKeyResponseError(error!)
@@ -97,9 +95,6 @@ class DRMKeySessionDelegate: NSObject, AVContentKeySessionDelegate {
             guard error == nil else {
                 completion(nil)
                 return
-            }
-            if data != nil{
-                print(String(decoding: data!, as: UTF8.self))
             }
             completion(data)
         }.resume()

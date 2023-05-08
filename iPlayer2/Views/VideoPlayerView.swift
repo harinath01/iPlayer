@@ -258,7 +258,6 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     }
     
     func showQualityMenu(){
-        print(availableResolutions)
         let alert = UIAlertController(title: "Playback Speed", message: nil, preferredStyle: .actionSheet)
         for resolutionInfo in self.availableResolutions {
             let action = UIAlertAction(title: resolutionInfo.resolution, style: .default, handler: { (_) in
