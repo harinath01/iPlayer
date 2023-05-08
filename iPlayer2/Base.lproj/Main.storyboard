@@ -30,12 +30,22 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9DQ-dd-cCs">
-                                <rect key="frame" x="152" y="448" width="110" height="35.00000000000307"/>
+                                <rect key="frame" x="147" y="449" width="121" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="DRM Video"/>
+                                <buttonConfiguration key="configuration" style="filled" title="DRM Video 1"/>
                                 <connections>
                                     <action selector="handleDRMButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H4T-lf-eqw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myA-eK-mRb">
+                                <rect key="frame" x="144" y="362" width="124" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="DRM Video 2"/>
+                                <connections>
+                                    <action selector="handleDRMButton2Click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q80-Kw-HK1"/>
+                                    <action selector="handleDRMButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D2g-kp-9fk"/>
                                 </connections>
                             </button>
                         </subviews>

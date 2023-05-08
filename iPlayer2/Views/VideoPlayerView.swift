@@ -7,6 +7,7 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     var player: AVPlayer!
     var playerLayer: AVPlayerLayer!
     var url: URL!
+    var DRMLicenseURL: String!
     var timeObserver: Any!
     var videoEndObserver: Any!
     var videoPlayerControlsView: VideoPlayerControlsView! = .fromNib("VideoPlayerControls")
@@ -23,8 +24,9 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
         super.init(coder: aDecoder)
     }
     
-    init(frame: CGRect, url: URL!) {
+    init(frame: CGRect, url: URL!, DRMLicenseURL: String) {
         self.url = url
+        self.DRMLicenseURL = DRMLicenseURL
         super.init(frame: frame)
         setupPlayer()
         setupPlayerControls()
@@ -78,7 +80,7 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     
     func createContentKeySession() -> AVContentKeySession{
         let contentKeySession = AVContentKeySession(keySystem: AVContentKeySystem.fairPlayStreaming)
-        contentKeySessionDelegate = DRMKeySessionDelegate(licenseURL: "https://app.tpstreams.com/api/v1/edee9b/assets/4A7M7nUYnX9/drm_license/?access_token=e258e9b9-e4c4-473f-8f01-40198e7d37c2&drm_type=fairplay")
+        contentKeySessionDelegate = DRMKeySessionDelegate(licenseURL: self.DRMLicenseURL)
         contentKeySession.setDelegate(contentKeySessionDelegate, queue: DispatchQueue.main)
         return contentKeySession
     }
