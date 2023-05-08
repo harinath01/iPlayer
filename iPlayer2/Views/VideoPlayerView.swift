@@ -17,7 +17,7 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     
     // Define these as propery of class, to prevent the delegates from being deallocated,
     var contentKeySessionDelegate: DRMKeySessionDelegate!
-    var videoPlayerResourceLoaderDelegate: VideoPlayerResourceLoaderDelegate!
+    var contentKeySession: AVContentKeySession!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -70,18 +70,16 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     }
     
     func getPlayerItem() -> AVPlayerItem{
-        var asset = AVURLAsset(url: url)
-        let contentKeySession = getContentKeySessionForAsset(asset: asset)
-        videoPlayerResourceLoaderDelegate = VideoPlayerResourceLoaderDelegate(contentKeySession)
-        asset.resourceLoader.setDelegate(videoPlayerResourceLoaderDelegate, queue: DispatchQueue.main)
+        let asset = AVURLAsset(url: url)
+        contentKeySession = createContentKeySession()
+        contentKeySession.addContentKeyRecipient(asset)
         return AVPlayerItem(asset: asset)
     }
     
-    func getContentKeySessionForAsset(asset: AVURLAsset) -> AVContentKeySession{
+    func createContentKeySession() -> AVContentKeySession{
         let contentKeySession = AVContentKeySession(keySystem: AVContentKeySystem.fairPlayStreaming)
         contentKeySessionDelegate = DRMKeySessionDelegate(licenseURL: "https://app.tpstreams.com/api/v1/edee9b/assets/4A7M7nUYnX9/drm_license/?access_token=e258e9b9-e4c4-473f-8f01-40198e7d37c2&drm_type=fairplay")
         contentKeySession.setDelegate(contentKeySessionDelegate, queue: DispatchQueue.main)
-        contentKeySession.addContentKeyRecipient(asset)
         return contentKeySession
     }
     

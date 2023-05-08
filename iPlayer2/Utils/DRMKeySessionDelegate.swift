@@ -34,7 +34,9 @@ class DRMKeySessionDelegate: NSObject, AVContentKeySessionDelegate {
     }
     
     func handleStreamingContentKeyRequest(keyRequest: AVContentKeyRequest){
-        guard let contentKeyIdentifier = keyRequest.identifier as? NSURL, let contentId = contentKeyIdentifier.host
+        guard let contentKeyIdentifier = keyRequest.identifier as? String,
+            let contentKeyIdentifierURL = URL(string: contentKeyIdentifier),
+            let contentId = contentKeyIdentifierURL.host
             else {
                 debugPrint("Failed to retrieve the assetID from the keyRequest!")
                 return
