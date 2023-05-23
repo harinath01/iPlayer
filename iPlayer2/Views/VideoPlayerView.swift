@@ -24,7 +24,7 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
         super.init(coder: aDecoder)
     }
     
-    init(frame: CGRect, url: URL!, DRMLicenseURL: String) {
+    init(frame: CGRect, url: URL!, DRMLicenseURL: String?) {
         self.url = url
         self.DRMLicenseURL = DRMLicenseURL
         super.init(frame: frame)
@@ -80,8 +80,10 @@ class VideoPlayerView: UIView, PlayerControlDelegate{
     
     func createContentKeySession() -> AVContentKeySession{
         let contentKeySession = AVContentKeySession(keySystem: AVContentKeySystem.fairPlayStreaming)
-        contentKeySessionDelegate = DRMKeySessionDelegate(licenseURL: self.DRMLicenseURL)
-        contentKeySession.setDelegate(contentKeySessionDelegate, queue: DispatchQueue.main)
+        if (self.DRMLicenseURL != nil){
+            contentKeySessionDelegate = DRMKeySessionDelegate(licenseURL: self.DRMLicenseURL)
+            contentKeySession.setDelegate(contentKeySessionDelegate, queue: DispatchQueue.main)
+        }
         return contentKeySession
     }
     
